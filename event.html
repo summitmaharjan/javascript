@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn-click">Click Me</button>
+    <button id="dblbtn-click">Double Click Me</button>
+    <button id="btn-hover">Hover</button>
+
+    <hr/>
+
+    <button onclick="handleClick()">Click me!</button>
+    
+    <input type="text" onchange="handleInputChange(this.value)"/>
+    <span id="text-content"></span>
+
+    <select onchange="handleCountrySelect(this.value)">
+        <option>Nepal</option>
+        <option>India</option>
+        <option>Bhutan</option>
+    </select>
+    <script>
+
+        var btnClick = document.getElementById("btn-click");
+        var dblBtnClick = document.getElementById("dblbtn-click");
+        var btnHover = document.getElementById("btn-hover");
+
+
+        // addEventListener('event', function(){})
+
+
+       btnClick.addEventListener('click', function(){
+        alert('You clicked me!')
+       });
+
+       dblBtnClick.addEventListener('dblclick', function(){
+        alert("You double clicked me")
+       })
+    //    dblBtnClick.addEventListener('mouseout', function(){alert('You removed your cursor')});
+    //    btnHover.addEventListener('mouseover',function(){alert('You placed cursor in this button')});
+
+    //    click,
+    //    double click: dblClick,
+    //    hover: mouseOver / mouseOut
+    //    change
+    //    checked
+
+
+    function handleClick(){
+        alert("You clicked me!")
+    }
+
+    function handleInputChange(value){
+        var textContent = document.querySelector('#text-content');
+        textContent.innerText='Your name is '+value;
+    }
+
+    function handleCountrySelect(value){
+       alert(value)
+    }
+
+
+    </script>
+</body>
+</html>
