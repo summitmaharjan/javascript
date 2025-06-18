@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        .image-wrapper{
+            max-width: 500px;
+            position: relative;
+            margin:0 auto;
+            height: 600px;
+            border:1px solid #000;
+        }
+        img{
+            max-width: 100%;
+            width: 100%;
+            position: absolute;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        img.active{
+            display: block;
+        }
+        .buttons{
+            padding:10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-wrapper">
+        <img src="https://cdn.pixabay.com/photo/2024/02/17/15/59/plum-blossoms-8579641_1280.jpg" alt="" class="active">
+        <img src="https://cdn.pixabay.com/photo/2025/04/24/05/23/woman-9554464_960_720.jpg" alt="">
+        <img src="https://cdn.pixabay.com/photo/2025/05/01/16/21/insect-9571817_1280.jpg" alt="">
+        <img src="https://cdn.pixabay.com/photo/2021/02/13/14/51/building-6011756_1280.jpg" alt="">
+        <img src="https://cdn.pixabay.com/photo/2025/05/18/14/05/congratulations-9607355_1280.png" alt="">
+    </div>
+
+    <div class="buttons">
+        <button onclick="handlePrevImage()">Prev</button>
+        <button onclick="handleNextImage()">Next</button>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('img');
+        var imageIndex = 0;
+        function handlePrevImage(){
+            imageIndex--;
+
+            for(var i = 0; i < images.length; i++){
+                images[i].classList.remove('active')
+            }
+             if(imageIndex < 0){
+                imageIndex = images.length - 1;
+            }
+            images[imageIndex].classList.add('active')
+        }
+
+        function handleNextImage(){
+             imageIndex++;
+             for(var i = 0; i < images.length; i++){
+                images[i].classList.remove('active')
+            }
+            if(imageIndex > images.length - 1){
+                imageIndex = 0;
+            }
+            images[imageIndex].classList.add('active')
+
+            
+        }
+    </script>
+</body>
+</html>

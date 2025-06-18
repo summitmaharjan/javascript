@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Signup Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f7fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .form-container {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 600px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+        position: relative;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 15px;
+      }
+
+      .form-row .form-group {
+        flex: 1;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 14px;
+      }
+
+      .checkbox-group {
+        margin-top: 20px;
+      }
+
+      .checkbox-group label {
+        display: inline;
+        font-weight: normal;
+      }
+      input[type="text"],
+      input[type="number"] {
+        display: flex;
+      }
+
+      input[type="checkbox"] {
+        margin-right: 8px;
+      }
+      .gender-options {
+        display: flex;
+        gap: 10px;
+        margin-top: 5px;
+      }
+      .gender-options label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: normal;
+        margin-top: 10px;
+      }
+
+      .password-toggle {
+        font-size: 12px;
+        position: absolute;
+        right: 15px;
+        top: 35px;
+        cursor: pointer;
+      }
+
+      .confirmpassword-toggle {
+        font-size: 12px;
+        position: absolute;
+        right: 15px;
+        top: 35px;
+        cursor: pointer;
+      }
+
+      .submit-btn {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: #3498db;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+      }
+
+      .submit-btn:hover {
+        background-color: #2980b9;
+      }
+      input.error {
+        border-color: #f00;
+      }
+      .error {
+        color: #f00;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Sign Up Form</h1>
+      <form onsubmit="return handelFormSubmit()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" name="firstName" id="firstName" />
+            <span class="error" id="error-firstname"></span>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="lastName" id="lastName" />
+            <p class="error" id="error-lastname"></p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input type="number" name="phone" id="phone" />
+          <p class="error" id="error-phone"></p>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" name="age" id="age" />
+            <p class="error" id="error-age"></p>
+          </div>
+          <div class="form-group">
+            <label>Gender:</label>
+            <div class="gender-options">
+              <input
+                type="radio"
+                name="gender"
+                value="male"
+                id="male"
+                checked
+              />
+              <label for="male">Male</label>
+
+              <input type="radio" name="gender" value="female" id="female" />
+              <label for="female">Female</label>
+
+              <input type="radio" name="gender" value="other" id="other" />
+              <label for="other">Other</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="country">Country:</label>
+          <input type="text" name="country" id="country" />
+          <p class="error" id="error-country"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="text" name="email" id="email" />
+          <p class="error" id="error-email"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" />
+          <a class="password-toggle" onclick="handlePasswordToggle()">Show</a>
+          <p class="error" id="error-password"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password:</label>
+          <input type="password" name="confirmPassword" id="confirmPassword" />
+          <a
+            class="confirmpassword-toggle"
+            onclick="handelConfirmPasswordTooggle()"
+            >Show</a
+          >
+          <p class="error" id="error-confirmpassword"></p>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" name="terms" id="terms" />
+          <label for="terms">I agree to the Terms and Conditions</label>
+          <p class="error" id="error-terms"></p>
+        </div>
+
+        <button type="submit" class="submit-btn">Register</button>
+      </form>
+    </div>
+
+    <script>
+      var firstName = document.getElementById("firstName");
+      var lastName = document.getElementById("lastName");
+      var phone = document.getElementById("phone");
+      var age = document.getElementById("age");
+
+      var country = document.getElementById("country");
+      var email = document.getElementById("email");
+      var password = document.getElementById("password");
+      var confirmPassword = document.getElementById("confirmPassword");
+      var terms = document.getElementById("terms");
+
+
+
+      //regular express
+      //phone
+      var phoneRegex = /^[\d]{10}$/;
+      //email
+      var emailRegex = /^[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
+      //for password toggler:
+      var passwordToggler = document.querySelector(".password-toggle");
+      var confirmpasswordToggler = document.querySelector(
+        ".confirmpassword-toggle"
+      );
+
+      //for error message
+      var errorFirstname = document.getElementById("error-firstname");
+      var errorLastname = document.getElementById("error-lastname");
+      var errorPhone = document.getElementById("error-phone");
+      var errorAge = document.getElementById("error-age");
+      var errorCountry = document.getElementById("error-country");
+      var errorEmail = document.getElementById("error-email");
+      var errorPassword = document.getElementById("error-password");
+      var errorConfirmPassword = document.getElementById(
+        "error-confirmpassword"
+      );
+      var errorTerm = document.getElementById("error-terms");
+
+      firstName.focus();
+
+      function handlePasswordToggle() {
+        if (passwordToggler.innerText === "Show") {
+          passwordToggler.innerText = "Hide";
+          password.type = "text";
+        } else if (passwordToggler.innerText === "Hide") {
+          passwordToggler.innerText = "Show";
+          password.type = "password";
+        }
+      }
+      function handelConfirmPasswordTooggle() {
+        if (confirmpasswordToggler.innerText === "Show") {
+          confirmpasswordToggler.innerText = "Hide";
+          confirmPassword.setAttribute("type", "text");
+        } else if (confirmpasswordToggler.innerText === "Hide") {
+          confirmpasswordToggler.innerText = "Show";
+          confirmPassword.setAttribute("type", "password");
+        }
+      }
+
+      function handelFormSubmit() {
+        //error clerance
+        errorFirstname.innerText = "";
+        firstName.classList.remove("error");
+        errorLastname.innerText = "";
+        lastName.classList.remove("error");
+        errorPhone.innerText = "";
+        phone.classList.remove("error");
+        errorAge.innerText = "";
+        age.classList.remove("error");
+        errorCountry.innerText = "";
+        country.classList.remove("error");
+        errorEmail.innerText = "";
+        email.classList.remove("error");
+        errorPassword.innerText = "";
+        password.classList.remove("error");
+        errorConfirmPassword.innerText = "";
+        confirmPassword.classList.remove("error");
+        errorTerm.innerText = "";
+        terms.classList.remove("error");
+
+        //Form Validation
+        if (firstName.value.trim() == "") {
+          errorFirstname.innerText = "Enter firstname";
+          firstName.classList.add("error");
+        }
+        if (lastName.value.trim() == "") {
+          errorLastname.innerText = "Enter lastname ";
+          lastName.classList.add("error");
+        }
+        // if (phone.value.trim() == "") {
+        //   errorPhone.innerText = "Enter Phone Number ";
+        //   phone.classList.add("error");
+        // } else if (phone.value.trim().length < 10) {
+        //   errorPhone.innerText = "10 digit number required";
+        //   phone.classList.add("error");
+        // }
+        if(!phoneRegex.test(phone.value.trim())){
+          errorPhone.innerText = "Invalid Phone number";
+          phone.classList.add("error");
+        }
+
+        if (age.value.trim() === "") {
+          errorAge.innerText = "Please enter your age";
+          age.classList.add("error");
+        } else if (age.value.trim().length > 3) {
+          errorAge.innerText = "Age cannot be greater than 3";
+          age.classList.add("error");
+        }
+        if (country.value.trim() == "") {
+          errorCountry.innerText = "Please Enter Your Country Name.";
+          country.classList.add("error");
+        }
+        // if (email.value.trim() == "") {
+        //   errorEmail.innerText = "Please enter an email.";
+        //   email.classList.add("error");
+        // }
+         if(!emailRegex.test(email.value.trim())){
+          errorEmail.innerText = "Invalid email address";
+          email.classList.add("error");
+        }
+        if (password.value.trim() === "") {
+          errorPassword.innerText = "Enter password";
+          password.classList.add("error");
+        } else if (password.value.trim().length <= 7) {
+          errorPassword.innerText =
+            "Password must be greater than 7 characters";
+          password.classList.add("error");
+        }
+        if (confirmPassword.value.trim() === "") {
+          errorConfirmPassword.innerText = "Enter password";
+          confirmPassword.classList.add("error");
+        } else if (confirmPassword.value.trim() !== password.value.trim()) {
+          errorConfirmPassword.innerText =
+            "Confirm password doesnot match confirm Password.";
+          confirmPassword.classList.add("error");
+        }
+        if (!terms.checked) {
+          errorTerm.innerText = "Please check the Terms and Condition.";
+          terms.classList.add("error");
+        }
+
+        return false;
+      }
+    </script>
+  </body>
+</html>
