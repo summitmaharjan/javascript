@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const person = {
+            name: 'Manoj',
+            age: 20,
+            obtainedGrade(){
+                return 'He obtained A Grade in Bachelor'
+            },
+            fullname(){
+                return this.name;
+            }
+        }
+
+        person.name = 'Sujan';
+        person.roll = 12;
+
+   
+      const {age, ...others} = person;
+
+       const destination = '{"name": "Australia","slug": "study-in-australia","description": "Famous for natural wonders, quality of life, vibrant cities, safe environment, and work & educational opportunities","featured_image": "https:\/\/admin.searcheducation.com.np\/image\/destinations\/1742316210_destination-australia-thumb.jpg","sortorder": 1}'
+        // Javascript object notation
+       const destinationObject = JSON.parse(destination) // convert string to object
+
+       const parsedPerson = JSON.stringify(person) // convert object to string
+
+
+
+       const keys =  Object.keys(destinationObject)
+       
+        const values = Object.values(destinationObject)
+
+        const objectToArray =  Object.entries(destinationObject)
+
+        const students = [
+            {
+                name: 'Ramesh',
+                age: 20
+            },
+             {
+                name: 'Sita',
+                age: 21
+            }
+        ]
+
+            
+        const [x,y] = students;
+ 
+
+   
+
+    </script>
+</body>
+</html>
